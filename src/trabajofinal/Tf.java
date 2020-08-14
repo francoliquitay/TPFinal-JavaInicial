@@ -130,10 +130,12 @@ public class Tf {
 
         sacarTxt = JOptionPane.showInputDialog("¿Cuánto dinero quiere extraer? \n Tiene que ser multiplo de 100 \n Y hasta $10000");
         try {
-            
-        } catch (Exception e) {
+            sacar = Double.parseDouble(sacarTxt);
+        }  catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "la opción ingresada es incorrecta, solo se aceptan números", "Error", JOptionPane.ERROR_MESSAGE);
+            sacarPlata(saldoBase, acciones);
         }
-        sacar = Double.parseDouble(sacarTxt);
+        
 
         if (sacar % 100 == 0 && sacar > 0 && sacar <= 10000 && sacar <= saldoBase) {
             saldoBase = saldoBase - sacar;
