@@ -36,41 +36,51 @@ public class Tf {
         while (!usuarioVista.equals("0")) {
 
             usuarioVista = JOptionPane.showInputDialog("Ingrese su usuario: ");
-
+            //cdo se oprime salir o cancelar finaliza la ejecucion
+            if (usuarioVista == null) {
+                JOptionPane.showMessageDialog(null, "“GRACIAS POR USAR NUESTRO SISTEMA”. ");
+                System.exit(0);
+            }
             if (usuarioVista.equals(usuarioBase)) {
+
                 passVista = JOptionPane.showInputDialog("Ingrese su contraseña: ");
+                if (passVista == null) {
+                    JOptionPane.showMessageDialog(null, "“GRACIAS POR USAR NUESTRO SISTEMA”. ");
+                    System.exit(0);
+                }
                 if (passVista.equals(passBase)) {
+
                     System.out.println("Mensaje interno: el usuario ingresa al menú");
                     JOptionPane.showMessageDialog(null, "Bienvenido/a " + usuarioVista);
                     accionesARealizar(saldoBase, acciones);
                 } else {
                     JOptionPane.showMessageDialog(null, "Contraseña Incorrecta ");
-
                 }
+            } else if (usuarioVista.equals("0")) {
+                System.out.println("Mensaje interno: el usuario oprimio 0 para salir del sistema");
+                JOptionPane.showMessageDialog(null, "“GRACIAS POR USAR NUESTRO SISTEMA”. ");
+                System.exit(0);
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario Incorrecto");
-
             }
-
         }
-        System.out.println("Mensaje interno: el usuario oprimio 0 para salir del sistema");
-        JOptionPane.showMessageDialog(null, "“GRACIAS POR USAR NUESTRO SISTEMA”. ");
-        System.exit(0);
-
     }
 
     public static void accionesARealizar(double saldoBase, String acciones) {
-        String numtxt;
+        String numTxt;
         int num = 0;
 
-        numtxt = JOptionPane.showInputDialog("¿Qué acción desea realizar?\n 1 - DEPOSITAR \n 2 - SACAR PLATA \n 3 - MOSTRAR SALDO \n 4 - ACCIONES REALIZADAS \n 5 - SALIR");
+        numTxt = JOptionPane.showInputDialog("¿Qué acción desea realizar?\n 1 - DEPOSITAR \n 2 - SACAR PLATA \n 3 - MOSTRAR SALDO \n 4 - ACCIONES REALIZADAS \n 5 - SALIR");
         try {
-            num = Integer.parseInt(numtxt);
+            if (numTxt == null) {
+                ingresarUsuario(saldoBase, acciones);
+            }
+            num = Integer.parseInt(numTxt);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "la opción ingresada es incorrecta, solo se aceptan números", "Error", JOptionPane.ERROR_MESSAGE);
             accionesARealizar(saldoBase, acciones);
         }
-        
+
         switch (num) {
             case 1:
                 depositar(saldoBase, acciones);
@@ -99,17 +109,20 @@ public class Tf {
     public static void depositar(double saldoBase, String acciones) {
         String saldoTxt;
 
-        double saldoNuevo=0.0;
+        double saldoNuevo = 0.0;
 
         saldoTxt = JOptionPane.showInputDialog("Ingrese su saldo a depositar \n Debe ser multiplo de 100 y hasta $5000 por transacción");
-        
+
         try {
-             saldoNuevo = Double.parseDouble(saldoTxt);
+            if (saldoTxt == null) {
+                accionesARealizar(saldoBase, acciones);
+            }
+            saldoNuevo = Double.parseDouble(saldoTxt);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "la opción ingresada es incorrecta, solo se aceptan números", "Error", JOptionPane.ERROR_MESSAGE);
             depositar(saldoBase, acciones);
         }
-       
+
         if (saldoNuevo % 100 == 0 && saldoNuevo > 0 && saldoNuevo <= 5000) {
             saldoBase = saldoBase + saldoNuevo;
             System.out.println("Mensaje interno: el saldo actual es $ " + saldoBase);
@@ -126,16 +139,18 @@ public class Tf {
     public static void sacarPlata(double saldoBase, String acciones) {
 
         String sacarTxt;
-        double sacar=0.0;
+        double sacar = 0.0;
 
         sacarTxt = JOptionPane.showInputDialog("¿Cuánto dinero quiere extraer? \n Tiene que ser multiplo de 100 \n Y hasta $10000");
         try {
+            if (sacarTxt == null) {
+                accionesARealizar(saldoBase, acciones);
+            }
             sacar = Double.parseDouble(sacarTxt);
-        }  catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "la opción ingresada es incorrecta, solo se aceptan números", "Error", JOptionPane.ERROR_MESSAGE);
             sacarPlata(saldoBase, acciones);
         }
-        
 
         if (sacar % 100 == 0 && sacar > 0 && sacar <= 10000 && sacar <= saldoBase) {
             saldoBase = saldoBase - sacar;
