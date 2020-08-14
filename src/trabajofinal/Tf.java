@@ -38,15 +38,13 @@ public class Tf {
             usuarioVista = JOptionPane.showInputDialog("Ingrese su usuario: ");
             //cdo se oprime salir o cancelar finaliza la ejecucion
             if (usuarioVista == null) {
-                JOptionPane.showMessageDialog(null, "“GRACIAS POR USAR NUESTRO SISTEMA”. ");
-                System.exit(0);
+                ingresarUsuario(saldoBase, acciones);
             }
             if (usuarioVista.equals(usuarioBase)) {
 
                 passVista = JOptionPane.showInputDialog("Ingrese su contraseña: ");
                 if (passVista == null) {
-                    JOptionPane.showMessageDialog(null, "“GRACIAS POR USAR NUESTRO SISTEMA”. ");
-                    System.exit(0);
+                    ingresarUsuario(saldoBase, acciones);
                 }
                 if (passVista.equals(passBase)) {
 
