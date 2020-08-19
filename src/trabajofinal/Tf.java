@@ -19,10 +19,6 @@ public class Tf {
         String acciones = "";
         ingresarUsuario(saldoBase, acciones);
         accionesARealizar(saldoBase, acciones);
-
-        //Tf obj = new Tf();
-        //obj.ingresarUsuario();
-        //obj.accionesARealizar();
     }
 
     public static void ingresarUsuario(double saldoBase, String acciones) {
@@ -38,16 +34,17 @@ public class Tf {
             usuarioVista = JOptionPane.showInputDialog("Ingrese su usuario: ");
             //cdo se oprime salir o cancelar finaliza la ejecucion
             if (usuarioVista == null) {
+                System.out.println("Mensaje interno: el usuario oprimio cancelar o cruz");
                 ingresarUsuario(saldoBase, acciones);
             }
             if (usuarioVista.equals(usuarioBase)) {
 
                 passVista = JOptionPane.showInputDialog("Ingrese su contraseña: ");
                 if (passVista == null) {
+                    System.out.println("Mensaje interno: el usuario oprimio cancelar o cruz");
                     ingresarUsuario(saldoBase, acciones);
                 }
                 if (passVista.equals(passBase)) {
-
                     System.out.println("Mensaje interno: el usuario ingresa al menú");
                     JOptionPane.showMessageDialog(null, "Bienvenido/a " + usuarioVista);
                     accionesARealizar(saldoBase, acciones);
@@ -71,6 +68,7 @@ public class Tf {
         numTxt = JOptionPane.showInputDialog("¿Qué acción desea realizar?\n 1 - DEPOSITAR \n 2 - SACAR PLATA \n 3 - MOSTRAR SALDO \n 4 - ACCIONES REALIZADAS \n 5 - SALIR");
         try {
             if (numTxt == null) {
+                System.out.println("Mensaje interno: el usuario oprimio cancelar o cruz");
                 ingresarUsuario(saldoBase, acciones);
             }
             num = Integer.parseInt(numTxt);
@@ -113,6 +111,7 @@ public class Tf {
 
         try {
             if (saldoTxt == null) {
+                System.out.println("Mensaje interno: el usuario oprimio cancelar o cruz");
                 accionesARealizar(saldoBase, acciones);
             }
             saldoNuevo = Double.parseDouble(saldoTxt);
@@ -142,6 +141,7 @@ public class Tf {
         sacarTxt = JOptionPane.showInputDialog("¿Cuánto dinero quiere extraer? \n Tiene que ser multiplo de 100 \n Y hasta $10000");
         try {
             if (sacarTxt == null) {
+                System.out.println("Mensaje interno: el usuario oprimio cancelar o cruz");
                 accionesARealizar(saldoBase, acciones);
             }
             sacar = Double.parseDouble(sacarTxt);
